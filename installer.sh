@@ -64,7 +64,7 @@ BSDINIT_DIR="$WORKING_DIR/bsd-cloudinit"
 VENV_DIR="$BSDINIT_DIR/.venv"
 
 # bsd cloudinit
-BSDINIT_URL="https://api.github.com/repos/pellaeon/bsd-cloudinit/tarball/$GIT_REF"
+BSDINIT_URL="https://api.github.com/repos/thaonguyenvan/bsd-cloudinit/tarball/$GIT_REF"
 
 # commands
 VERIFY_PEER='--ca-cert=/usr/local/share/certs/ca-root-nss.crt'
@@ -81,7 +81,7 @@ INSTALL_PKGS='
 ##############################################
 #  utils
 ##############################################
-	
+
 echo_debug() {
 	echo '[debug] '$1
 }
@@ -148,7 +148,7 @@ echo_bsdinit_stamp >> $RC_SCRIPT_FILE
 echo "(
 	$PYTHON $BSDINIT_DIR/run.py --log-file /tmp/cloudinit.log $BSDINIT_SCRIPT_DEBUG_FLAG
 	cp -pf $RC_BACKUP_FILE $RC_SCRIPT_FILE
-	rm -r $BSDINIT_DIR
+	#rm -r $BSDINIT_DIR
 	rm $RC_BACKUP_FILE
 )" >> $RC_SCRIPT_FILE
 
