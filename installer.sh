@@ -134,7 +134,7 @@ mkdir -p $BSDINIT_DIR
 $FETCH -o - $BSDINIT_URL | tar -xzf - -C $BSDINIT_DIR --strip-components 1 $TAR_VERBOSE
 echo 'Done'
 
-virtualenv $VENV_DIR
+virtualenv --python=python2.7 $VENV_DIR
 . "$VENV_DIR/bin/activate"
 PYTHON="$VENV_DIR/bin/python"
 pip install --upgrade --force-reinstall pip
