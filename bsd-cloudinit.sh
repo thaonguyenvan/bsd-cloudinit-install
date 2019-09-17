@@ -20,6 +20,7 @@ export PATH=$PATH
 
 #disk_resize
 gpart recover vtbd0
+sysctl kern.geom.debugflags=16
 gpart resize -i 2 vtbd0
 growfs -y vtbd0p2
 
@@ -36,11 +37,11 @@ sed -i "" "s/hostname.*/hostname=$fqdn/g" /etc/rc.conf
 hostname $(echo $fqdn | tr -d '"')
 
 #get userdata
-pass=$(fetch http://169.254.169.254/openstack/latest/user_data -q -o -)
+fetch http://169.254.169.254/openstack/latest/user_data -q -o - | sh
 
 #set root passwd
 #pw mod user root -w random > /dev/null
-echo $pass | pw mod user root -h 0
+#echo $pass | pw mod user root -h 0
 
 # Output to OpenStack console log
 echo_bsdinit_stamp >> $LOADER_CONF
